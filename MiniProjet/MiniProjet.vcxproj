@@ -130,9 +130,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CoureurIA.cpp" />
+    <ClCompile Include="CoureurJoueur.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="ObjetGraphique.cpp" />
+    <ClCompile Include="Snipper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CoureurIA.h" />
+    <ClInclude Include="CoureurJoueur.h" />
+    <ClInclude Include="ObjetGraphique.h" />
+    <ClInclude Include="Snipper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

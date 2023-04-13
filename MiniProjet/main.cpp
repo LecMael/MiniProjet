@@ -1,10 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include<random>
+#include<time.h>
+//random et time servent à l'initialisation de la graine
+#include"CoureurIA.h"
+#include"CoureurJoueur.h"
+#include"Snipper.h"
 
 
 
 int main()
 {
+	//initialisation de la graine
+	srand(time(NULL));
 
 	// Création de la fenêtre
 	sf::RenderWindow window(sf::VideoMode(300, 300), "MiniProjet");
