@@ -11,7 +11,7 @@
 
 int main()
 {
-	//initialisation de la graine pour les déplacements de l'IA
+	//initialisation de la graine pour les déplacements de l'IA.
 	srand(time(NULL));
 
 	// Création de la fenêtre
