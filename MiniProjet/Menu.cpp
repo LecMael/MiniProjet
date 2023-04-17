@@ -1,4 +1,5 @@
 #include <iostream>
+#include<vector>
 using namespace std;
 #include <string>
 #include "Menu.h"
@@ -32,7 +33,11 @@ Menu::Menu() {
 }
 
 void Menu::NouvellePartie() {
-	Partie partie;
+	vector<int> posX = { 0,0,0,0,0,0,0 };
+	vector<int> posY = { 1,2,3,4,5,6,7 };
+	vector<string> sprites = { "a.png","b.png","c.png","d.png","e.png","f.png","g.png"};
+	int indicePlayerPos = rand() % 7;
+	Partie partie(posX, posY, indicePlayerPos, sprites);
 }
 
 void Menu::ChargerPartie() {

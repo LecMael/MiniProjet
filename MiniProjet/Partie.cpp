@@ -1,10 +1,25 @@
+#include<vector>
 #include "Partie.h"
 #include "Menu.h"
 #include"CoureurIA.h"
 #include"CoureurJoueur.h"
+#include<random>
 
-Partie::Partie() {
-	coureurJoueur = CoureurJoueur(0,0, "ew");
+Partie::Partie(vector<int> posX,  vector<int> posY, int indicePosPlyr_, vector<string> sprites) {
+	indicePosPlayer = indicePosPlyr_;
+	for (int i = 0; i <= 7; i++) {
+		if (i == indicePosPlyr_) {
+			coureurJoueur.setx(posX[i]);
+			coureurJoueur.sety(posY[i]);
+			coureurJoueur.setimage(sprites[i]);
+		}
+		else
+		{
+			coureurIA[i].setx(posX[i]);
+			coureurIA[i].sety(posY[i]);
+			coureurIA[i].setimage(sprites[i]);
+		}
+	}
 	// Création de la fenêtre
 	sf::RenderWindow window(sf::VideoMode(300, 300), "MiniProjet");
 
