@@ -1,7 +1,10 @@
 #include "Partie.h"
 #include "Menu.h"
+#include"CoureurIA.h"
+#include"CoureurJoueur.h"
 
 Partie::Partie() {
+	coureurJoueur = CoureurJoueur(0,0, "ew");
 	// Création de la fenêtre
 	sf::RenderWindow window(sf::VideoMode(300, 300), "MiniProjet");
 
