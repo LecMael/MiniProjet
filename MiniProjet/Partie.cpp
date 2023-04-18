@@ -1,4 +1,7 @@
-#include<vector>
+#pragma once
+#include <SFML/Graphics.hpp>
+#include <vector>
+#include <string>
 #include "Partie.h"
 #include "Menu.h"
 #include"CoureurIA.h"
@@ -6,7 +9,7 @@
 #include<random>
 
 Partie::Partie(vector<int> posX,  vector<int> posY, int indicePosPlyr_, vector<string> sprites) {
-	indicePosPlayer = indicePosPlyr_;
+	setIndice(indicePosPlyr_);
 	for (int i = 0; i <= 7; i++) {
 		if (i == indicePosPlyr_) {
 			coureurJoueur.setx(posX[i]);
