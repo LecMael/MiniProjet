@@ -13,11 +13,12 @@ class Partie
 	int indicePosPlayer;
 	CoureurJoueur coureurJoueur;
 	Snipper snipper;
-	CoureurIA coureurIA[7];
+	CoureurIA coureurIA[8];
 public:
 	Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<string> sprites);
 	void setIndice(int indice) { indicePosPlayer = indice; }
 	int getIndice() { return indicePosPlayer; }
-	void sauver(ofstream &ofs) const;
+	void Sauver(ofstream &ofs, string path) const;
+	void Deroulement();
 };
 
