@@ -19,6 +19,8 @@ public:
 	void setIndice(int indice) { indicePosPlayer = indice; }
 	int getIndice() { return indicePosPlayer; }
 	void Sauver(ofstream &ofs, string path) const;
-	void Deroulement();
+	void Deroulement(int indicePosPlayer);
+	void creationSprite(string image, sf::Sprite* sprite, sf::Vector2f position, sf::Texture* texture);
+	void timer();
 };
 

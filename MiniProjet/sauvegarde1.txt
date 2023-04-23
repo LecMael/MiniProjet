@@ -1,0 +1,10 @@
+6
+0,7,character1.png
+0,1,character1.png
+0,2,character1.png
+0,3,character1.png
+0,4,character1.png
+0,5,character1.png
+0,6,character1.png
+0,0, 
+0,8,character1.png

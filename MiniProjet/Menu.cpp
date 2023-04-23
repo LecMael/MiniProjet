@@ -36,9 +36,10 @@ Menu::Menu() {
 
 void Menu::NouvellePartie() {
 	vector<int> posX = { 0,0,0,0,0,0,0,0 };
-	vector<int> posY = { 1,2,3,4,5,6,7,8 };
-	vector<string> sprites = { "a.png","b.png","c.png","d.png","e.png","f.png","g.png", "h.png"};
+	vector<int> posY = { 0,112,244,336,448,560,672,782 };
+	vector<string> sprites = { "character1.png","character1.png","character1.png","character1.png","character1.png","character1.png","character1.png", "character1.png"};
 	int indicePlayerPos = rand() % 8;
+
 	Partie partie(posX, posY, indicePlayerPos, sprites);
 }
 
