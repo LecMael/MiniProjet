@@ -15,10 +15,11 @@ class Partie
 	Snipper snipper_;
 	CoureurIA coureurIA_[8];
 public:
-	Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<string> sprites);
-	void setIndice(int indice) { indicePosPlayer_ = indice; }
-	int getIndice() { return indicePosPlayer_; }
-	void Sauver(ofstream &ofs, string path) const;
+	
+	Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<string> sprites);//Constructeur de la partie prenant les positions de départ des joueurs en paramètre,la position du joueur dans le tableau et les sprites, Lecoeuche
+	void setIndice(int indice) { indicePosPlayer_ = indice; }//Getter du paramètre, Lecoeuche
+	int getIndice() { return indicePosPlayer_; }//Setter du paramètre, Lecoeuche
+	void Sauver(ofstream &ofs, string path) const;//Sauvegarde les données dans des fichiers txt, Lecoeuche
 	bool Deroulement();
 	void creationSprite(string image, sf::Sprite* sprite, sf::Vector2f position, sf::Texture* texture, sf::Vector2f echelle=sf::Vector2f(0.125f,0.125f));
 	void timer(int duree);//duree en ms

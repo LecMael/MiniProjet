@@ -1,10 +1,4 @@
-6
-0,7,character1.png
-0,1,character1.png
-0,2,character1.png
-0,3,character1.png
-0,4,character1.png
-0,5,character1.png
-0,6,character1.png
-0,0, 
-0,8,character1.png
+7
+78 64 70 78 66 82 74 210 
+0 128 256 384 512 640 752 880 
+blue_0.png red_0.png black_0.png white_0.png rose_0.png green_0.png yellow_0.png orange_0.png 

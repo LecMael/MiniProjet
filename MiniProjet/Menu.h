@@ -9,6 +9,5 @@ public:
 	Menu();
 	void NouvellePartie();
 	void ChargerPartie();
-	void Quitter();
 };
 

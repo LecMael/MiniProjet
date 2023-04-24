@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include<iostream>
 #include<fstream>
 #include <vector>
@@ -11,7 +12,9 @@
 #include"CoureurJoueur.h"
 #include<time.h>
 
+//Constructeur de la partie prenant les positions de départ des joueurs en paramètre
 Partie::Partie(vector<int> posX,  vector<int> posY, int indicePosPlyr, vector<string> sprites) {
+	//L'indice indique l'endroit où se situe le joueur coureur
 	setIndice(indicePosPlyr);
 	for (int i = 0; i <= 7; i++) {
 		if (i == indicePosPlayer_) {
@@ -26,21 +29,23 @@ Partie::Partie(vector<int> posX,  vector<int> posY, int indicePosPlyr, vector<st
 			coureurIA_[i].setimage(sprites[i]);
 		}
 	}
-
+	//On place le snipper à une postion par défaut car sa position importe peu
 	snipper_.setx(512);
 	snipper_.sety(512);
 	snipper_.setimage("snipper.png");
 
 	bool fin=Deroulement();//indique si la partie a été achevée(true) ou interrompue(false)
-
+	//On teste si la partie est achevée ou non
 	if (not(fin))
 	{
+		//Si elle ne l'est pas on propose au joueur de sauvegarder
 		int choice, choiceSave;
 		cout << "Entrez 1 : Revenir au menu et sauvegarder la partie" << endl;
 		cout << "Entrez 2 : Revenir au menu sans sauvegarder" << endl;
 		cin >> choice;
 		if (choice == 1)
 		{
+			//On peut sauvegarder dans 3 fichiers en écrasant le contenu précédent si le fichier est non vide
 			ofstream ofs;
 			cout << "Entrez 1 : Sauvegarder dans l'emplacement 1" << endl;
 			cout << "Entrez 2 : Sauvegarder dans l'emplacement 2" << endl;
@@ -66,12 +71,46 @@ Partie::Partie(vector<int> posX,  vector<int> posY, int indicePosPlyr, vector<st
 }
 
 void Partie::Sauver(ofstream& ofs, string path) const {
+	//On ouvre le fichier du nom donné en paramètre en s'assurant d'écraser le contenu précédent
 	ofs.open(path, ofstream::trunc);
+	// en première place du tableau on met la position du joueur dans les coureur
 	ofs << indicePosPlayer_ << endl;
-	ofs << coureurJoueur_.getx() << "," << coureurJoueur_.gety() << "," << coureurJoueur_.getimage() << endl;
+	//On place les X, les Y et les sprites dans un tableau en prenant soin de conserver le joueur à la même position
 	for (int i = 0; i < 8; i++)
 	{
-		ofs << coureurIA_[i].getx() << ","<< coureurIA_[i].gety()<< "," << coureurIA_[i].getimage()<< endl;
+		if (i == indicePosPlayer_) {
+			ofs << coureurJoueur_.getx() << " ";
+		}
+		else
+		{
+			ofs << coureurIA_[i].getx() << " ";
+		}
+	}
+	ofs << endl;
+
+	for (int i = 0; i < 8; i++)
+	{
+		if (i == indicePosPlayer_) {
+			ofs << coureurJoueur_.gety() << " ";
+		}
+		else
+		{
+			ofs << coureurIA_[i].gety() << " ";
+		}
+
+	}
+	ofs << endl;
+
+	for (int i = 0; i < 8; i++)
+	{
+		if (i == indicePosPlayer_) {
+			ofs << coureurJoueur_.getimage() << " ";
+		}
+		else
+		{
+			ofs << coureurIA_[i].getimage() << " ";
+		}
+
 	}
 	ofs.close();
 
@@ -129,6 +168,14 @@ bool Partie::Deroulement() {
 	
 	// Création de la fenêtre
 	sf::RenderWindow window(sf::VideoMode(1024, 1024), "MiniProjet");
+	//Lancement d'une musique
+	sf::Music music;
+	if (!music.openFromFile("music.WAV")) {
+		cout << "erreur musique";
+	}
+	//On joue la musique en boucle
+	music.setLoop(true);
+	music.play();
 
 	//Création de l'arène
 	sf::Sprite arene;
@@ -189,6 +236,7 @@ bool Partie::Deroulement() {
 		if ((fin[0]) || (fin[1]) || (fin[2]))//on teste si la partie est gagnée
 		{
 			acheve = true;
+			music.stop();
 			window.close();
 		}
 
@@ -199,6 +247,7 @@ bool Partie::Deroulement() {
 			switch (event.type)
 			{
 			case sf::Event::Closed://demande de fermeture de la fenêtre
+				music.stop();
 				window.close();
 				break;
 			case sf::Event::KeyPressed:
