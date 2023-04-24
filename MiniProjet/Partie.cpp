@@ -337,7 +337,7 @@ bool Partie::Deroulement() {
 		window.draw(snipperSprite);//on dessine le snipper
 
 		//phase d'attribution:indique au joueur qui est son personnage
-		if (attributionrealisee == 1)
+		if (attributionrealisee == 2)
 		{
 			sf::Sprite go;
 			sf::Texture gotexture;
