@@ -1,4 +1,5 @@
 #include"ObjetGraphique.h"
+#include <SFML/Graphics.hpp>
 
 ObjetGraphique::ObjetGraphique(int x, int y, string image)
 {
@@ -12,7 +13,7 @@ void ObjetGraphique::deplacement(char direction)
 	switch (direction)
 	{
 	case 'D':
-		x_++;
+		x_ = x_ + 3;
 		break;
 	case 'G':
 		x_--;
@@ -21,3 +22,4 @@ void ObjetGraphique::deplacement(char direction)
 		break;
 	}
 }
+

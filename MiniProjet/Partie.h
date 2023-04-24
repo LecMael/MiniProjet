@@ -10,17 +10,18 @@
 
 class Partie
 {
-	int indicePosPlayer;
-	CoureurJoueur coureurJoueur;
-	Snipper snipper;
-	CoureurIA coureurIA[8];
+	int indicePosPlayer_;
+	CoureurJoueur coureurJoueur_;
+	Snipper snipper_;
+	CoureurIA coureurIA_[8];
 public:
 	Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<string> sprites);
-	void setIndice(int indice) { indicePosPlayer = indice; }
-	int getIndice() { return indicePosPlayer; }
+	void setIndice(int indice) { indicePosPlayer_ = indice; }
+	int getIndice() { return indicePosPlayer_; }
 	void Sauver(ofstream &ofs, string path) const;
-	void Deroulement(int indicePosPlayer);
-	void creationSprite(string image, sf::Sprite* sprite, sf::Vector2f position, sf::Texture* texture);
-	void timer();
+	bool Deroulement();
+	void creationSprite(string image, sf::Sprite* sprite, sf::Vector2f position, sf::Texture* texture, sf::Vector2f echelle=sf::Vector2f(0.125f,0.125f));
+	void timer(int duree);//duree en ms
+	int surbrillance(sf::Sprite* snipperSprite);
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <SFML/Graphics.hpp>
 using namespace std;
 
 class ObjetGraphique
@@ -18,4 +19,5 @@ public:
 	void sety(int y) { y_ = y; };
 	void setimage(string image) { image_ = image; };
 	virtual void deplacement(char direction = 'I');
+	virtual bool victoire(sf::Sprite* concurrent, sf::Sprite* objectif) const { return concurrent->getPosition().x + 30 > objectif->getPosition().x; };
 };
