@@ -7,8 +7,3 @@ Snipper::Snipper(int x, int y, string image)
 	setimage(image);
 }
 
-bool Snipper::victoire(sf::Sprite* concurrent, sf::Sprite* objectif) const
-{
-	sf::FloatRect concurrentRect = concurrent->getGlobalBounds(), objectifRect = objectif->getGlobalBounds();
-	return concurrent->getOrigin().x + (round(concurrentRect.width / 2)) > objectif->getPosition().x;
-}

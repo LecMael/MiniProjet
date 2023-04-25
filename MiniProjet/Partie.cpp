@@ -3,7 +3,6 @@
 #include <SFML/Audio.hpp>
 #include<iostream>
 #include<fstream>
-#include <vector>
 #include <string>
 #include "Partie.h"
 #include "Menu.h"
@@ -13,7 +12,7 @@
 #include<time.h>
 
 //Constructeur de la partie prenant les positions de départ des joueurs en paramètre
-Partie::Partie(vector<int> posX,  vector<int> posY, int indicePosPlyr, vector<string> sprites) {
+Partie::Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<string> sprites) {
 	//L'indice indique l'endroit où se situe le joueur coureur
 	setIndice(indicePosPlyr);
 	for (int i = 0; i <= 7; i++) {
@@ -240,7 +239,7 @@ bool Partie::Deroulement() {
 			window.close();
 		}
 
-		indice = surbrillance(&snipperSprite);
+		indice = surbrillance(&snipperSprite);//on vérifie si le snipper a un coureur en visée
 
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -260,19 +259,24 @@ bool Partie::Deroulement() {
 					fin[0] = coureurJoueur_.victoire(&joueur, &arriveSprite);
 					
 				}
+				if (event.key.code == sf::Keyboard::Escape)//on met la partie en pause, donc fermeture de la fenêtre en appuyant sur échappe
+				{
+					music.stop();
+					window.close();
+				}
 				break;
 			case sf::Event::MouseButtonPressed:
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
-					if (attributionrealisee == 0) attributionrealisee++;
-					else
+					if (attributionrealisee == 0) attributionrealisee++;//Pour indiquer que le joueur souhaite mettre fin à la phase d'attribution et lancer la partie
+					else// le snipper a tiré, on vérifie si sa cible était la bonne
 					{
 						if (indice == 8) fin[1] = true;
 						else fin[0] = true;
 					}
 				}
 				break;
-			case sf::Event::MouseMoved:
+			case sf::Event::MouseMoved://mouvement du snipper
 				snipperSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
 				break;
 			default:
@@ -282,7 +286,7 @@ bool Partie::Deroulement() {
 
 		
 
-		//on fait avancer les joueurs IA si la phase d'attribution est terminée
+		//on fait avancer les joueurs IA si la phase d'attribution est terminée et la partie lancée(après le GO!)
 		if (attributionrealisee > 1)
 		{
 			for (int i = 0; i < 8; i++)
@@ -309,7 +313,7 @@ bool Partie::Deroulement() {
 		window.draw(arriveSprite);//on dessine la ligne d'arrivée
 
 		//on dessine le joueur
-		if (indice == 8)
+		if (indice == 8)//le snipper a le joueur en visée
 		{
 			window.draw(joueurSur);
 		}
@@ -318,7 +322,7 @@ bool Partie::Deroulement() {
 			window.draw(joueur);
 		}
 
-		//on dessine les joueurs IA
+		//on dessine les joueurs IA si la phase d'attribution est terminé
 		if (attributionrealisee >= 1)
 		{
 			attributionrealisee++;
@@ -337,7 +341,7 @@ bool Partie::Deroulement() {
 		window.draw(snipperSprite);//on dessine le snipper
 
 		//phase d'attribution:indique au joueur qui est son personnage
-		if (attributionrealisee == 2)
+		if (attributionrealisee == 2)//le joueur souhaite lancer la partie, donc il faudra afficher GO! à l'écran. Cette boucle crée le sprite GO!
 		{
 			sf::Sprite go;
 			sf::Texture gotexture;
@@ -363,7 +367,7 @@ bool Partie::Deroulement() {
 			window.draw(victoireSnipper);
 		}
 
-		if (fin[2])
+		if (fin[2])//match nul, un IA a franchi la ligne d'arrivée en premier
 		{
 			sf::Sprite victoireIA;
 			sf::Texture victoireIAtexture;
@@ -373,8 +377,8 @@ bool Partie::Deroulement() {
 
 		window.display();
 
-		if ((fin[0]) || (fin[1]) || (fin[2])) timer(5000);
-		if (attributionrealisee == 2) timer(500);
+		if ((fin[0]) || (fin[1]) || (fin[2])) timer(5000);//Pour faire afficher le message de victoire pendant 5s
+		if (attributionrealisee == 2) timer(500);//pour afficher GO! pendant 0,5s
 		
 		
 	}

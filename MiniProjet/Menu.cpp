@@ -1,10 +1,10 @@
 #include <iostream>
 #include<fstream>
-#include<vector>
 #include <string>
 #include <sstream>
 using namespace std;
 #include <string>
+#include<vector>
 #include "Menu.h"
 #include "Partie.h"
 
@@ -36,9 +36,9 @@ Menu::Menu() {
 }
 
 void Menu::NouvellePartie() {
-	vector<int> posX = { 0,0,0,0,0,0,0,0 };
-	vector<int> posY = { 0,128,256,384,512,640,752,880 };
-	vector<string> sprites = { "blue_0.png","red_0.png","black_0.png","white_0.png","rose_0.png","green_0.png","yellow_0.png", "orange_0.png" };
+	vector<int> posX = {0,0,0,0,0,0,0,0};
+	vector<int> posY = {0,128,256,384,512,640,752,880};
+	vector<string> sprites = {"blue_0.png","red_0.png","black_0.png","white_0.png","rose_0.png","green_0.png","yellow_0.png", "orange_0.png"};
 	int indicePlayerPos = rand() % 8;
 
 	Partie partie(posX, posY, indicePlayerPos, sprites);

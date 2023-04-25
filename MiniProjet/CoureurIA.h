@@ -1,9 +1,9 @@
 #pragma once
 #include"ObjetGraphique.h"
 
-class CoureurIA : public ObjetGraphique//ne pas oubliée d'initialiser la seed en début de main
+class CoureurIA : public ObjetGraphique //classe héritière d'ObjetGraphique qui gère un coureur contrôlé par l'ordinateur, par MOHAMAN BELLO Souley
 {
-public:
-	CoureurIA(int x = 0, int y = 0, string image = " ");
-	virtual void deplacement(char direction='I');//'I' signifie indéfinie, et donc qu'il s'agit d'un joueur contrôlé par l'IA et dont le mouvement est complètement aléatoire
+public://toutes ces méthodes ont été réalisées par MOHAMAN BELLO Souley
+	CoureurIA(int x = 0, int y = 0, string image = " ");//constructeur de CoureurIA
+	virtual void deplacement(char direction='I');//Cette méthode gère le déplacement de l'IA dans une frame.'I' signifie indéfinie.
 };
