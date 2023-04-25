@@ -12,7 +12,9 @@
 #include<time.h>
 
 //Constructeur de la partie prenant les positions de départ des joueurs en paramètre
-Partie::Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<string> sprites) {
+Partie::Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<string> sprites)
+//Constructeur de la partie prenant les positions de départ des joueurs en paramètre,la position du joueur dans le tableau et les sprites, par Maël LECOEUCHE
+{
 	//L'indice indique l'endroit où se situe le joueur coureur
 	setIndice(indicePosPlyr);
 	for (int i = 0; i <= 7; i++) {
@@ -69,7 +71,9 @@ Partie::Partie(vector<int> posX, vector<int> posY, int indicePosPlyr, vector<str
 	Menu menu;
 }
 
-void Partie::Sauver(ofstream& ofs, string path) const {
+void Partie::Sauver(ofstream& ofs, string path) const 
+//Sauvegarde les données dans des fichiers txt. On prend en paramètre le flux dans lequel écrire ofs et le nom du fichier concerné path, par Maël LECOEUCHE
+{
 	//On ouvre le fichier du nom donné en paramètre en s'assurant d'écraser le contenu précédent
 	ofs.open(path, ofstream::trunc);
 	// en première place du tableau on met la position du joueur dans les coureur
@@ -116,6 +120,7 @@ void Partie::Sauver(ofstream& ofs, string path) const {
 }
 
 void Partie::timer(int duree)
+//cette méthode réalise une boucle permettant de faire passer "valeur de duree" millisecondes, par MOHAMAN BELLO Souley
 {
 	clock_t debut, fin;
 	debut = clock();
@@ -127,6 +132,7 @@ void Partie::timer(int duree)
 }
 
 void Partie::creationSprite(string image, sf::Sprite* sprite, sf::Vector2f position, sf::Texture* texture, sf::Vector2f echelle)
+//cette fonction crée un sprite à partir du chemin d'accès vers l'image à utiliser pour la texture, un pointeur sur l'objet sprite concerné, un pointeur sur sa texture et elle initialise la position du sprite dans la fenêtre grâce au paramètre position et son échelle ggrâce au paramètre echelle, par MOHAMAN BELLO Souley
 {
 	if (!(*texture).loadFromFile(image));
 	{
@@ -138,6 +144,7 @@ void Partie::creationSprite(string image, sf::Sprite* sprite, sf::Vector2f posit
 }
 
 int Partie::surbrillance(sf::Sprite* snipperSprite)
+//cette méthode permet d'indiquer à travers l'indice à la fonction déroulement si le snipper à en viser un coureur, afin qu'il soit affiché en rouge plus tard dans déroulement. Elle prend en paramètre un pointeur sur le sprite du snipper. Par MOHAMAN BELLO Souley.
 {
 	int i = 0, indice = -1;
 	while(i<8)
@@ -160,7 +167,9 @@ int Partie::surbrillance(sf::Sprite* snipperSprite)
 	return indice;
 }
 
-bool Partie::Deroulement() {
+bool Partie::Deroulement()
+//Cette méthode gère le dessin de la fenêtre, la création et le dessin des sprites et la gestion des évènements clavier et souris(notamment le déplacement et le tir du snipper) par MOHAMAN BELLO Souley
+{
 	int avanceIA = 0, attributionrealisee = 0, indice = -1;
 	bool acheve = false;
 	bool fin[3] = {false,false,false};//indique si une partie est gagnée, i=0: coureur, i=1: snipper et i=2: IA 
@@ -252,7 +261,7 @@ bool Partie::Deroulement() {
 			case sf::Event::KeyPressed:
 				if (event.key.code == sf::Keyboard::Right)
 				{
-					coureurJoueur_.deplacement('D');
+					coureurJoueur_.deplacement();
 					joueur.setPosition(sf::Vector2f(coureurJoueur_.getx(), coureurJoueur_.gety()));
 					joueurSur.setPosition(sf::Vector2f(coureurJoueur_.getx(), coureurJoueur_.gety()));
 					//on teste si le coureurjoueur a gagné la partie
@@ -293,7 +302,7 @@ bool Partie::Deroulement() {
 			{
 				if (not(i == indicePosPlayer_))
 				{
-					coureurIA_[i].deplacement('I');
+					coureurIA_[i].deplacement();
 					joueursIA[i].setPosition(sf::Vector2f(coureurIA_[i].getx(), coureurIA_[i].gety()));
 					joueursIASur[i].setPosition(sf::Vector2f(coureurIA_[i].getx(), coureurIA_[i].gety()));
 					timer(5);

@@ -19,6 +19,6 @@ public://Toutes ces méthodes ont été réalisées par MOHAMAN BELLO Souley
 	void setx(int x) { x_ = x; };//modifie la valeur du champ x_ qui prend la valeur de x
 	void sety(int y) { y_ = y; };//modifie la valeur du champ y_ qui prend la valeur de y
 	void setimage(string image) { image_ = image; };//modifie la valeur du champ image_ qui prend la valeur d'image
-	virtual void deplacement(char direction = 'I');//gère le déplacement du coureurJoueur. Elle prend en paramètre un caractère qui indiquera la direction dans laquelle le joueur avance(toutefois, dans notre version finale on ne peut avancer que dans une direction donc elle restera, donc on aurait pu se passer de ce paramètre)  
+	virtual void deplacement() { x_ = x_ + 3; };//gère le déplacement du coureurJoueur dans une frame. 
 	bool victoire(sf::Sprite* concurrent, sf::Sprite* objectif) const { return concurrent->getPosition().x + 30 > objectif->getPosition().x; };//Cette méthode renvoie un booléen qui indique si un coureur a frachi la ligne d'arrivée ou pas. Elle prend en paramètre un pointeur sur le sprite du joueur considéré et un pointeur sur le sprite de l'objectif, ici la ligne d'arrivée
 };
