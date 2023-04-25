@@ -29,12 +29,19 @@ Menu::Menu()
 		break;
 	case 3:
 		cout << "Hidden in plain Sight se joue a 2 joueurs, un coureur et un snipper. Le coureur est camoufle dans une foule de personnages non joueurs. Son objectif est d'atteindre la ligne d'arrivee sans que le snipper ne le reconnaisse et l'elimine. Le snipper n'a qu'une seule chance pour trouver son adversaire"<< endl;
+		cout << "Lorsqu'une partie est lancée, il y a une phase où un unique personnage apparait a l'ecran, c'est celui controle par le joueur au clavier(attention a ce que l'autre ne puisse pas voir cette phase)" << endl;
+		cout << "Lorsqu'il aura mémorisé son personnage, il devra faire un clic gauche sur la fenetre pour lancer la partie" << endl;
+		cout << "Lorsque le snipper a un joueur en visee, celui ci devient rouge, et il pourra faire un clic gauche a la souris pour tirer" << endl;
+		cout << "le joueur au clavier ne qu'avancer avec la touche directionnelle droite" << endl;
+		cout << "Appuyer sur la touche echappe pour quitter le jeu" << endl;
+		cout << "BONNE CHANCE!" << endl;
 		break;
 	case 4:
 		break;
 	default:
 		break;
 	}
+	if (choice == 3) Menu menu;
 }
 
 void Menu::NouvellePartie() 
