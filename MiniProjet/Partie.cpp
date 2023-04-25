@@ -144,7 +144,7 @@ void Partie::creationSprite(string image, sf::Sprite* sprite, sf::Vector2f posit
 }
 
 int Partie::surbrillance(sf::Sprite* snipperSprite)
-//cette méthode permet d'indiquer à travers l'indice à la fonction déroulement si le snipper à en viser un coureur, afin qu'il soit affiché en rouge plus tard dans déroulement. Elle prend en paramètre un pointeur sur le sprite du snipper. Par MOHAMAN BELLO Souley.
+//cette méthode permet d'indiquer à travers l'indice à la fonction déroulement si le snipper à en visée un coureur, afin qu'il soit affiché en rouge plus tard dans déroulement. Elle prend en paramètre un pointeur sur le sprite du snipper. Par MOHAMAN BELLO Souley.
 {
 	int i = 0, indice = -1;
 	while(i<8)
